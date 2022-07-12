@@ -16,7 +16,6 @@ body {
   width: 50%;
   height: 75%;
   background-color: black;
-  margin: 50px auto;
   padding-top: 1px;
   border-radius: 10px;
 }
@@ -57,7 +56,7 @@ body {
   font-weight: 900;
   border-radius: 10px;
   font-family: "Times New Roman", Times, serif;
-  padding: 20px;
+  padding: 20px 10px;
   cursor: pointer;
 }
 
@@ -65,21 +64,22 @@ body {
   transform: scale(0.95);
   transition: ease-in;
 }
+
 .num {
-  background-color: rgba(10, 10, 10, 0.9);
+  background-color: rgb(32, 31, 31);
 }
 
 .operator {
-  background-color: rgba(249, 136, 7, 0.5);
+  background-color: rgb(249, 136, 7);
 }
 
 .topOp {
-  background-color: rgba(128, 128, 128, 0.6);
+  background-color: rgba(203, 197, 197, 0.952);
   color: black;
 }
 
 #equal {
-  background-color: rgba(249, 136, 7, 0.5);
+  background-color: rgb(249, 136, 7);
 }
 
 #zero {
@@ -88,17 +88,18 @@ body {
 
 footer {
   text-align: center;
+  font-size: 6px;
 }
 
 footer a {
   text-decoration: none;
-  font-size: larger;
+  font-size: large;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: white;
 }
 
 span {
-  font-size: larger;
+  font-size: large;
   font-family: cursive;
   font-weight: 800;
 }
