@@ -3,9 +3,9 @@ const numberButtons = document.querySelectorAll('[data-number]');
 const clearButton = document.querySelector('#clear');
 const operatorButtons = document.querySelectorAll('[data-operator]')
 const equalsButton = document.querySelector('#equal')
-/* const lastOpScreen = document.getElementById('lastOpScreen')
-const currentOpScreen = document.getElementById('currentOpScreen') */
 const pointButton = document.querySelector ('.point')
+const deleteButton = document.querySelector('#delete')
+const percentButton = document.querySelector('#percentage')
 
 let firstOperand = ''
 let secondOperand = ''
@@ -16,6 +16,7 @@ window.addEventListener('keydown', handleKeyboardInput)
 equalsButton.addEventListener('click', evaluate)
 clearButton.addEventListener('click', clear)
 pointButton.addEventListener('click', appendPoint)
+deleteButton.addEventListener('click', deleteNumber)
 
 numberButtons.forEach((button) => 
     button.addEventListener('click', () => appendNumber(button.textContent))
@@ -63,8 +64,7 @@ function setOperation (operator) {
     if (currentOperation !== null) evaluate ()
     firstOperand = displayButton.textContent
     currentOperation = operator
-    // displayButton.textContent = `${firstOperand} ${currentOperation}`
-    shouldResetScreen = true
+    shouldResetScreen = true 
 }
 
 function evaluate () {
@@ -77,7 +77,7 @@ function evaluate () {
     displayButton.textContent = roundResult (
         operate(currentOperation, firstOperand, secondOperand)
     )
-    // displayButton.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
+    shouldResetScreen = true 
     currentOperation = null
 }
 
@@ -91,7 +91,7 @@ function handleKeyboardInput(e) {
     if (e.key === '=' || e.key === 'Enter') evaluate()
     if (e.key === 'Backspace') deleteNumber()
     if (e.key === 'Escape') clear ()
-    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/' || e.key === '%')
     setOperation(convertOperator(e.key))
 }
 
@@ -100,16 +100,14 @@ function convertOperator (keyboardOperator) {
     if (keyboardOperator === '+') return 'add'
     if (keyboardOperator === '*') return 'multiply'
     if (keyboardOperator === '-') return 'subtract'
-
+    if (keyboardOperator === '%') return 'percentage'
 }
 
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
+const percentage = num => num / 100;
 
 function divide (num1, num2) {
-    if (num2 === 0) {
-        return '...err!';
-    }
     return Math.round((num1 / num2) * 1000000) / 1000000;
 }
 
@@ -127,76 +125,6 @@ const operate = (operator, num1, num2) => {
     } else if (operator === 'multiply') {
         return multiply(num1, num2);
     } else if (operator === 'percentage') {
-        return percentage(num1, num2)
+        return percentage(num2)
     }
 }
-
-console.log(operate('add', 1, 2))
-
-// Basic maths function for the calculator
-/* const add = (num1, num2) => num1 + num2;
-const subtract = (num1, num2) => num1 - num2;
-
-function divide (num1, num2) {
-    if (num2 === 0) {
-        return '...err!';
-    }
-    return Math.round((num1 / num2) * 1000000) / 1000000;
-}
-
-const multiply = (num1, num2) => num1 * num2;
-const percentage = num1 => num1 / 100;
-
-// Function that calls operation on number pairs.
-const operate = (operator, num1, num2) => {
-    if (operator === 'add') {
-        return add(num1, num2);
-    } else if (operator === 'subtract') {
-        return subtract(num1, num2);
-    } else if (operator === 'divide') {
-        return divide(num1, num2);
-    } else if (operator === 'multiply') {
-        return multiply(num1, num2);
-    } else if (operator === 'percentage') {
-        return percentage(num1, num2)
-    }
-}
-
-let firstValue = 0;
-let secondValue;
-let solution;
-let operator;
-
-clear.addEventListener('click', function() {
-    clear.textContent = 'AC';
-    firstValue = [];
-    secondValue = 0;
-    solution = 0;
-    display.textContent = '';
-})
-
-numbers.forEach((number) => {
-    number.addEventListener('click', function () {
-        display.textContent += number.textContent;
-        if (firstValue === 0) {
-            firstValue = Number(display.textContent); 
-        } else secondValue = Number(display.textContent);
-        clear.textContent = 'C';
-    })
-})
-
-operators.forEach((element) => {
-    element.addEventListener('click', function () {
-        operator = element.id;
-        display.textContent = '';
-    })
-})
-
-equal.addEventListener('click', function () {
-    solution = operate(operator, firstValue, secondValue);
-    display.textContent = solution;
-}) */
-
-
-
-
