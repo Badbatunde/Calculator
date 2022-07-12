@@ -18,7 +18,7 @@ body {
   background-color: black;
   padding-top: 1px;
   border-radius: 10px;
-  margin: auto;
+  margin-left: 20px;
 }
 
 #calculator {
@@ -109,6 +109,6 @@ span {
 .subsection {
   font-style: italic;
   font-size: 12px;
-  margin: 20px 20px 0px 20px;
+  margin: 50px 20px 0px 20px;
   text-align: center;
 }
